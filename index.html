@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="gameContainer">
+        <header class="jogoHeader">
+          <h1 class="jogoHeader__title">Jogo da velha</h1>
+          <button
+            class="jogoHeader__btnPlay"
+            onclick="newTicTacToe = new TicTacToe(this);"
+          >
+            Jogar
+          </button>
+          <button
+            class="jogoHeader__btnRematch"
+            onclick="newTicTacToe.rematch()"
+          >
+            Rejogar
+          </button>
+        </header>
+
+        <main class="gameTable"></main>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

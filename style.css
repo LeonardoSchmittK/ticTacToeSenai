@@ -1,0 +1,81 @@
+* {
+  outline: 0;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.gameContainer {
+  margin: auto;
+  width: 20%;
+  background-color: rgb(241, 241, 241);
+  padding: 2em;
+}
+
+.gameTable {
+  margin-top: 4em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.table__cell {
+  height: 100px;
+  background-color: rgb(248, 243, 254);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lower:nth-child(even) {
+  border: 0;
+  border-left: 5px solid #121111;
+  border-right: 5px solid #121111;
+}
+
+.upper:nth-child(even) {
+  border: 0;
+  border-left: 5px solid #121111;
+  border-right: 5px solid #121111;
+}
+
+.table__cell-4 {
+  border: 5px solid #121111;
+}
+
+.table__cell-5 {
+  border-top: 5px solid #121111;
+  border-bottom: 5px solid #121111;
+}
+.table__cell-3 {
+  border-top: 5px solid #121111;
+  border-bottom: 5px solid #121111;
+}
+
+.jogoHeader__btnRematch {
+  width: 25%;
+  border: 2px solid #00fffa;
+  height: 2.5em;
+  border-radius: 999px;
+}
+
+.jogoHeader__btnPlay {
+  width: 25%;
+  background-color: #00fffa;
+  color: #144948;
+  height: 2.5em;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+button.disabled {
+  background-color: #00fffb43;
+}
