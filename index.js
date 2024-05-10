@@ -7,6 +7,9 @@ class TicTacToe {
   toggleSign = "X";
   gameOn = false;
   btn;
+  counterPlays = 0;
+  matrix = [];
+  isOver = false;
 
   constructor(btn) {
     btn.disabled = true;
@@ -14,6 +17,43 @@ class TicTacToe {
     btn.classList.add("disabled");
     console.log(btn);
     this.printTable();
+  }
+
+  buildMatrix() {
+    const signs = [];
+    const cells = document.querySelectorAll(".table__cell");
+    cells.forEach((item, id) => {
+      if (item.childNodes[0]) {
+        signs.push(item.childNodes[0].innerText);
+      } else {
+        signs.push("");
+      }
+    });
+
+    this.matrix = buildSquaredMatrix(3, signs);
+  }
+
+  setIsOver(isOver) {
+    this.isOver = isOver;
+  }
+  getIsOver() {
+    return this.isOver;
+  }
+
+  getMatrix() {
+    return this.matrix;
+  }
+
+  incrementCounterPlays() {
+    this.setCounterPlays(this.getCounterPlays() + 1);
+  }
+
+  getCounterPlays() {
+    return this.counterPlays;
+  }
+
+  setCounterPlays(conterPlays) {
+    this.counterPlays = conterPlays;
   }
 
   printTable() {
@@ -37,10 +77,13 @@ class TicTacToe {
   }
 
   printPlayerSign(cell) {
+    this.incrementCounterPlays();
+    document.querySelector(".jogoHeader__counterPlays").innerText =
+      this.getCounterPlays();
     let color;
     if (this.getToggleSign() === "X") {
       this.setToggleSign("O");
-      color = "#7A08F7";
+      color = "#f76d11";
     } else {
       color = "#73FF00";
       this.setToggleSign("X");
@@ -53,8 +96,43 @@ class TicTacToe {
     cell.style.color = color;
     cell.appendChild(title);
 
-    if (this.isEndgame()) {
-      alert("ola");
+    this.buildMatrix();
+
+    if (this.getCounterPlays() >= 5) {
+      this.checkForWinner();
+    }
+
+    if (this.isEndgame() && !this.isOver) {
+      this.disableAllCells();
+    }
+  }
+
+  disableAllCells() {
+    document
+      .querySelectorAll(".table__cell")
+      .forEach((cell) => (cell.style.pointerEvents = "none"));
+  }
+
+  checkForWinner() {
+    const winByColumns = checkColumnsEqual(this.getMatrix());
+    const winByLines = checkLinesEqual(this.getMatrix());
+    const winByDiagonalSecondaryDiagonal = checkSecondaryDiagonal(
+      this.getMatrix()
+    );
+    const winByMainMatrix = checkMainDiagonalEqual(this.getMatrix());
+    console.log(winByColumns + " __ COLUNAS");
+    console.log(winByLines + " __ LINHAS");
+    console.log(winByDiagonalSecondaryDiagonal + " __ SECUNDARIO");
+    console.log(winByMainMatrix + " __ PRINCIPAL");
+    if (
+      winByColumns ||
+      winByLines ||
+      winByDiagonalSecondaryDiagonal ||
+      winByMainMatrix
+    ) {
+      alert(this.toggleSign + " VENCEU!");
+      this.setIsOver(true);
+      this.disableAllCells();
     }
   }
 
@@ -71,7 +149,9 @@ class TicTacToe {
     document.querySelectorAll(".table__cell").forEach((cell) => {
       this.gameTable.removeChild(cell);
     });
-
+    this.setCounterPlays(0);
+    document.querySelector(".jogoHeader__counterPlays").innerHTML =
+      this.getCounterPlays();
     this.printTable();
   }
 

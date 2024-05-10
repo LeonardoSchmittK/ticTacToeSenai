@@ -8,15 +8,27 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+  --var-main-color: #7a08f7;
+  --var-main-color-darker: #290e47;
+  --var-second-color: #73ff00;
+  --var-second-color-darker: #375f17;
+}
+
 button {
   cursor: pointer;
+}
+
+body {
+  background-color: var(--var-main-color);
+  color: aliceblue;
 }
 
 .gameContainer {
   margin: auto;
   width: 20%;
-  background-color: rgb(241, 241, 241);
   padding: 2em;
+  border-radius: 1em;
 }
 
 .gameTable {
@@ -28,8 +40,9 @@ button {
 
 .table__cell {
   height: 100px;
-  background-color: rgb(248, 243, 254);
   display: flex;
+  background-color: var(--var-main-color);
+
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -37,27 +50,27 @@ button {
 
 .lower:nth-child(even) {
   border: 0;
-  border-left: 5px solid #121111;
-  border-right: 5px solid #121111;
+  border-left: 5px solid var(--var-main-color-darker);
+  border-right: 5px solid var(--var-main-color-darker);
 }
 
 .upper:nth-child(even) {
   border: 0;
-  border-left: 5px solid #121111;
-  border-right: 5px solid #121111;
+  border-left: 5px solid var(--var-main-color-darker);
+  border-right: 5px solid var(--var-main-color-darker);
 }
 
 .table__cell-4 {
-  border: 5px solid #121111;
+  border: 5px solid var(--var-main-color-darker);
 }
 
 .table__cell-5 {
-  border-top: 5px solid #121111;
-  border-bottom: 5px solid #121111;
+  border-top: 5px solid var(--var-main-color-darker);
+  border-bottom: 5px solid var(--var-main-color-darker);
 }
 .table__cell-3 {
-  border-top: 5px solid #121111;
-  border-bottom: 5px solid #121111;
+  border-top: 5px solid var(--var-main-color-darker);
+  border-bottom: 5px solid var(--var-main-color-darker);
 }
 
 .jogoHeader__btnRematch {
