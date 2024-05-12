@@ -23,7 +23,11 @@ body {
   background-color: var(--var-main-color);
   color: aliceblue;
 }
-
+.jogoHeader__title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-size: 3em;
+}
 .gameContainer {
   margin: auto;
   width: 20%;
@@ -46,6 +50,22 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.table__cell:first-of-type {
+  border-top-left-radius: 20px;
+}
+
+.table__cell:nth-of-type(7) {
+  border-bottom-left-radius: 20px;
+}
+
+.table__cell:last-of-type {
+  border-bottom-right-radius: 20px;
+}
+
+.table__cell:nth-of-type(3) {
+  border-top-right-radius: 20px;
 }
 
 .lower:nth-child(even) {
@@ -75,20 +95,55 @@ body {
 
 .jogoHeader__btnRematch {
   width: 25%;
-  border: 2px solid #00fffa;
+  background-color: transparent;
+  border: 2px solid var(--var-main-color-darker);
   height: 2.5em;
   border-radius: 999px;
+  color: #fff;
+  border-bottom: 4px solid var(--var-main-color-darker);
 }
 
 .jogoHeader__btnPlay {
   width: 25%;
-  background-color: #00fffa;
-  color: #144948;
+  background-color: transparent;
   height: 2.5em;
   border-radius: 999px;
   font-weight: 800;
+  margin-top: 1em;
+  color: #fff;
+
+  border: 2px solid var(--var-main-color-darker);
+
+  border-bottom: 4px solid var(--var-main-color-darker);
 }
 
 button.disabled {
-  background-color: #00fffb43;
+  background-color: var(--var-main-color);
+  color: #ffffff5b;
+}
+
+.svgO {
+  transform: scale(2.4);
+}
+
+svg {
+  width: 2.2em;
+  height: 2.2em;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  animation: draw 0.5s linear forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.correct {
+  filter: grayscale(20%);
+}
+
+.wrong h1 {
+  opacity: 0.5;
 }
