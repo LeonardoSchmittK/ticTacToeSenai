@@ -15,6 +15,12 @@ html {
   --var-second-color-darker: #375f17;
 }
 
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 button {
   cursor: pointer;
 }
@@ -22,6 +28,7 @@ button {
 body {
   background-color: var(--var-main-color);
   color: aliceblue;
+  overflow: hidden;
 }
 .jogoHeader__title {
   font-family: "Bebas Neue", sans-serif;
@@ -40,6 +47,7 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  position: relative;
 }
 
 .table__cell {
@@ -127,17 +135,16 @@ button.disabled {
 }
 
 svg {
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+}
+
+svg.sign {
   width: 2.2em;
   height: 2.2em;
   stroke-dasharray: 450;
   stroke-dashoffset: 450;
   animation: draw 0.5s linear forwards;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
 }
 
 .correct {
@@ -146,4 +153,68 @@ svg {
 
 .wrong h1 {
   opacity: 0.5;
+}
+
+.bgAnimationContainer {
+  z-index: -9999;
+
+  position: absolute;
+  top: -6em;
+  left: -2em;
+  transform: rotate(-20deg);
+  opacity: 0.6;
+}
+.bgAnimationContainer:nth-child(2) {
+  position: absolute;
+  right: 0em;
+  bottom: -15em;
+  opacity: 0.6;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.bgAnimationContainer:nth-child(2) svg {
+}
+.bgAnimationContainer svg:nth-child(odd) {
+  transform: rotate(45deg);
+  width: 5em;
+  height: 20em;
+  animation: rotate 5s alternate infinite linear, draw 0.5s linear forwards;
+}
+.bgAnimationContainer svg:nth-child(even) {
+  transform: rotate(20deg);
+  width: 2.5em;
+  height: 10em;
+  opacity: 0.5;
+  animation: rotate 5s alternate infinite linear, draw 10s linear;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(50deg);
+  }
+
+  75% {
+    transform: rotate(25deg);
+  }
+
+  100% {
+    transform: rotate(100deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .gameContainer {
+    width: 95%;
+  }
 }
