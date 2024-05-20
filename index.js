@@ -97,12 +97,10 @@ class TicTacToe {
 
     if (this.getToggleSign() == "O") {
       title.classList.add("O");
-      title.innerHTML = `<svg class="svgO" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.44 74.33">
-      <!-- Outer Circles for Stroke -->
+      title.innerHTML = `<svg class="svgO sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.44 74.33">
       <circle cx="200" cy="37" r="70" fill="none" stroke="#FFA500" stroke-width="20" />
       <circle cx="200" cy="37" r="50" fill="none" stroke="#FFA500" stroke-width="20" />
       
-      <!-- Filled Circle -->
       <circle cx="200" cy="37" r="50" fill="transparent" />
     </svg>
     
@@ -111,7 +109,7 @@ class TicTacToe {
     } else {
       title.classList.add("X");
 
-      title.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      title.innerHTML = `<svg class="svgX sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
       <line x1="10" y1="10" x2="90" y2="90" stroke="#73ff00" stroke-width="16" />
       
       <line x1="90" y1="10" x2="10" y2="90" stroke="#73ff00" stroke-width="16" />
@@ -119,7 +117,6 @@ class TicTacToe {
     
     `;
     }
-    // title.innerText = this.getToggleSign();
     cell.style.pointerEvents = "none";
     cell.style.userSelect = "none";
     cell.style.color = color;
@@ -185,16 +182,16 @@ class TicTacToe {
     const winByDiagonalSecondaryDiagonal = checkSecondaryDiagonal(
       this.getMatrix()
     );
-    const winByMainMatrix = checkMainDiagonalEqual(this.getMatrix());
+    const winByMainDiagonal = checkMainDiagonalEqual(this.getMatrix());
     console.log(winByColumns + " __ COLUNAS");
     console.log(winByLines + " __ LINHAS");
     console.log(winByDiagonalSecondaryDiagonal + " __ SECUNDARIO");
-    console.log(winByMainMatrix + " __ PRINCIPAL");
+    console.log(winByMainDiagonal + " __ PRINCIPAL");
     if (
       winByColumns ||
       winByLines ||
       winByDiagonalSecondaryDiagonal ||
-      winByMainMatrix
+      winByMainDiagonal
     ) {
       alert(this.toggleSign + " VENCEU!");
       this.setIsOver(true);
@@ -206,6 +203,19 @@ class TicTacToe {
     if (winByColumns) {
       this.printColumnWon();
     }
+    if (winByMainDiagonal) {
+      this.printMainDiagonalWon();
+    }
+  }
+
+  printMainDiagonalWon() {
+    const cells = this.getElementsTable();
+    let cellTarget = [0, 1, 2];
+    cells.map((row, id) => {
+      if (cellTarget.includes(id)) {
+        row[id].classList.add("correct");
+      }
+    });
   }
 
   isEndgame() {
