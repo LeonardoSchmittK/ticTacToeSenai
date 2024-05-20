@@ -1,22 +1,30 @@
 let newTicTacToe;
+
 class TicTacToe {
   player1;
   player2;
-  table;
   gameTable = document.querySelector(".gameTable");
   toggleSign = "X";
-  gameOn = false;
-  btn;
   counterPlays = 0;
   matrix = [];
   isOver = false;
   elementsTable;
+  oSign = `<svg class="svgO sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.44 74.33">
+  <circle cx="200" cy="37" r="70" fill="none" stroke="#FFA500" stroke-width="20" />
+  <circle cx="200" cy="37" r="50" fill="none" stroke="#FFA500" stroke-width="20" />
+  
+  <circle cx="200" cy="37" r="50" fill="transparent" />
+</svg>`;
+  xSign = `<svg class="svgX sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <line x1="10" y1="10" x2="90" y2="90" stroke="#73ff00" stroke-width="16" />
+  
+  <line x1="90" y1="10" x2="10" y2="90" stroke="#73ff00" stroke-width="16" />
+</svg>`;
 
   constructor(btn) {
     btn.disabled = true;
     this.btn = btn;
     btn.classList.add("disabled");
-    console.log(btn);
     this.printTable();
   }
 
@@ -37,27 +45,8 @@ class TicTacToe {
     this.elementsTable = buildSquaredMatrix(3, cells);
   }
 
-  setIsOver(isOver) {
-    this.isOver = isOver;
-  }
-  getIsOver() {
-    return this.isOver;
-  }
-
-  getMatrix() {
-    return this.matrix;
-  }
-
   incrementCounterPlays() {
     this.setCounterPlays(this.getCounterPlays() + 1);
-  }
-
-  getCounterPlays() {
-    return this.counterPlays;
-  }
-
-  setCounterPlays(conterPlays) {
-    this.counterPlays = conterPlays;
   }
 
   printTable() {
@@ -66,7 +55,6 @@ class TicTacToe {
       cell.classList.add("table__cell");
       cell.classList.add(`table__cell-${i}`);
       this.gameTable.appendChild(cell);
-      console.log(cell);
 
       cell.onclick = () => this.printPlayerSign(cell);
 
@@ -97,26 +85,12 @@ class TicTacToe {
 
     if (this.getToggleSign() == "O") {
       title.classList.add("O");
-      title.innerHTML = `<svg class="svgO sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.44 74.33">
-      <circle cx="200" cy="37" r="70" fill="none" stroke="#FFA500" stroke-width="20" />
-      <circle cx="200" cy="37" r="50" fill="none" stroke="#FFA500" stroke-width="20" />
-      
-      <circle cx="200" cy="37" r="50" fill="transparent" />
-    </svg>
-    
-    
-    `;
+      title.innerHTML = this.getOSign();
     } else {
       title.classList.add("X");
-
-      title.innerHTML = `<svg class="svgX sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <line x1="10" y1="10" x2="90" y2="90" stroke="#73ff00" stroke-width="16" />
-      
-      <line x1="90" y1="10" x2="10" y2="90" stroke="#73ff00" stroke-width="16" />
-    </svg>
-    
-    `;
+      title.innerHTML = this.getXSign();
     }
+
     cell.style.pointerEvents = "none";
     cell.style.userSelect = "none";
     cell.style.color = color;
@@ -172,10 +146,6 @@ class TicTacToe {
     }
   }
 
-  getElementsTable() {
-    return this.elementsTable;
-  }
-
   checkForWinner() {
     const winByColumns = checkColumnsEqual(this.getMatrix());
     const winByLines = checkLinesEqual(this.getMatrix());
@@ -183,17 +153,13 @@ class TicTacToe {
       this.getMatrix()
     );
     const winByMainDiagonal = checkMainDiagonalEqual(this.getMatrix());
-    console.log(winByColumns + " __ COLUNAS");
-    console.log(winByLines + " __ LINHAS");
-    console.log(winByDiagonalSecondaryDiagonal + " __ SECUNDARIO");
-    console.log(winByMainDiagonal + " __ PRINCIPAL");
+
     if (
       winByColumns ||
       winByLines ||
       winByDiagonalSecondaryDiagonal ||
       winByMainDiagonal
     ) {
-      alert(this.toggleSign + " VENCEU!");
       this.setIsOver(true);
       this.disableAllCells();
     }
@@ -237,6 +203,46 @@ class TicTacToe {
     this.printTable();
   }
 
+  getOSign() {
+    return this.oSign;
+  }
+
+  getXSign() {
+    return this.xSign;
+  }
+
+  setIsOver(isOver) {
+    this.isOver = isOver;
+  }
+
+  getIsOver() {
+    return this.isOver;
+  }
+
+  getMatrix() {
+    return this.matrix;
+  }
+
+  setMatrix(matrix) {
+    return (this.matrix = matrix);
+  }
+
+  getCounterPlays() {
+    return this.counterPlays;
+  }
+
+  setCounterPlays(conterPlays) {
+    this.counterPlays = conterPlays;
+  }
+
+  getElementsTable() {
+    return this.elementsTable;
+  }
+
+  setElementsTable(elementsTable) {
+    this.elementsTable = elementsTable;
+  }
+
   getToggleSign() {
     return this.toggleSign;
   }
@@ -259,14 +265,6 @@ class TicTacToe {
 
   getPlayer2() {
     return this.player2;
-  }
-
-  getTable() {
-    this.table;
-  }
-
-  setTable(table) {
-    this.table = table;
   }
 
   setGameTable(gameTable) {

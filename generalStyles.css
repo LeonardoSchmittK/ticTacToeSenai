@@ -1,0 +1,38 @@
+body {
+  background-color: var(--var-main-color);
+  color: aliceblue;
+  overflow: hidden;
+}
+
+* {
+  outline: 0;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  --var-main-color: #7a08f7;
+  --var-main-color-darker: #290e47;
+  --var-second-color: #73ff00;
+  --var-second-color-darker: #375f17;
+}
+
+button {
+  cursor: pointer;
+  background: var(--var-main-color);
+  /* transition: 100ms linear; */
+}
+
+button:hover {
+  transform: scale(1.05);
+  /* transition: 100ms linear; */
+  border-bottom: 4px var(--var-main-color-darker) solid;
+}
+
+svg {
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+}

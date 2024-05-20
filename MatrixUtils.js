@@ -35,33 +35,6 @@ function checkSecondaryDiagonal(matrix) {
 }
 
 function checkLinesEqual(matrix) {
-  // let sign = matrix[0][0];
-  // let counter = 0;
-  // let size = 0;
-
-  // for (let l = 0; l < matrix.length; ++l) {
-  //   sign = matrix[l][counter];
-  //   if (!sign) {
-  //     l = l + 1;
-  //   }
-  //   console.log(sign + "<<<");
-
-  //   for (let c = 0; c < matrix.length; ++c) {
-  //     console.log(matrix[l][c]);
-  //     if (matrix[l][c] != sign || !matrix[l][c]) {
-  //       size = 0;
-  //     } else if (matrix[l][c] == sign && matrix[l][c]) {
-  //       size++;
-  //     }
-
-  //     if (size == 3) {
-  //       return true;
-  //     }
-  //   }
-  //   counter++;
-  // }
-  // return false;
-
   let counter = 0;
   for (let i = 0; i < matrix.length; ++i) {
     const line = new Set(matrix[i]);
@@ -75,6 +48,7 @@ function checkLinesEqual(matrix) {
 
   return false;
 }
+
 function getLineEqual(matrix) {
   let counter = 0;
   for (let i = 0; i < matrix.length; ++i) {

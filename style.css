@@ -1,43 +1,19 @@
-* {
-  outline: 0;
-  border: 0;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-html {
-  --var-main-color: #7a08f7;
-  --var-main-color-darker: #290e47;
-  --var-second-color: #73ff00;
-  --var-second-color-darker: #375f17;
-}
-
 .container {
   width: 100%;
   height: 100vh;
   position: relative;
 }
 
-button {
-  cursor: pointer;
-}
-
-body {
-  background-color: var(--var-main-color);
-  color: aliceblue;
-  overflow: hidden;
-}
 .jogoHeader__title {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-size: 3em;
+  text-shadow: 5px 10px 50px #141414;
 }
+
 .gameContainer {
   margin: auto;
-  width: 20%;
+  width: 25%;
   padding: 2em;
   border-radius: 1em;
 }
@@ -54,7 +30,6 @@ body {
   height: 100px;
   display: flex;
   background-color: var(--var-main-color);
-
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -96,6 +71,7 @@ body {
   border-top: 5px solid var(--var-main-color-darker);
   border-bottom: 5px solid var(--var-main-color-darker);
 }
+
 .table__cell-3 {
   border-top: 5px solid var(--var-main-color-darker);
   border-bottom: 5px solid var(--var-main-color-darker);
@@ -103,7 +79,6 @@ body {
 
 .jogoHeader__btnRematch {
   width: 25%;
-  background-color: transparent;
   border: 2px solid var(--var-main-color-darker);
   height: 2.5em;
   border-radius: 999px;
@@ -113,15 +88,12 @@ body {
 
 .jogoHeader__btnPlay {
   width: 25%;
-  background-color: transparent;
   height: 2.5em;
   border-radius: 999px;
   font-weight: 800;
   margin-top: 1em;
   color: #fff;
-
   border: 2px solid var(--var-main-color-darker);
-
   border-bottom: 4px solid var(--var-main-color-darker);
 }
 
@@ -134,11 +106,6 @@ button.disabled {
   transform: scale(2.4);
 }
 
-svg {
-  stroke-dasharray: 450;
-  stroke-dashoffset: 450;
-}
-
 svg.sign {
   width: 2.2em;
   height: 2.2em;
@@ -147,11 +114,11 @@ svg.sign {
   animation: draw 0.5s linear forwards;
 }
 
-.correct {
+.table__cell.correct {
   filter: grayscale(20%);
 }
 
-.wrong h1 {
+.table__cell.wrong h1 {
   opacity: 0.5;
 }
 
@@ -164,6 +131,7 @@ svg.sign {
   transform: rotate(-20deg);
   opacity: 0.6;
 }
+
 .bgAnimationContainer:nth-child(2) {
   position: absolute;
   right: 0em;
@@ -173,48 +141,18 @@ svg.sign {
   justify-content: end;
   align-items: end;
 }
-.bgAnimationContainer:nth-child(2) svg {
-}
+
 .bgAnimationContainer svg:nth-child(odd) {
   transform: rotate(45deg);
   width: 5em;
   height: 20em;
   animation: rotate 5s alternate infinite linear, draw 0.5s linear forwards;
 }
+
 .bgAnimationContainer svg:nth-child(even) {
   transform: rotate(20deg);
   width: 2.5em;
   height: 10em;
   opacity: 0.5;
   animation: rotate 5s alternate infinite linear, draw 10s linear;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(50deg);
-  }
-
-  75% {
-    transform: rotate(25deg);
-  }
-
-  100% {
-    transform: rotate(100deg);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .gameContainer {
-    width: 95%;
-  }
 }
