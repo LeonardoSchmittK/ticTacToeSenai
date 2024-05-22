@@ -7,6 +7,8 @@ class TicTacToe {
   toggleSign = "X";
   counterPlays = 0;
   matrix = [];
+  xWins = 0;
+  oWins = 0;
   isOver = false;
   elementsTable;
   oSign = `<svg class="svgO sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.44 74.33">
@@ -73,7 +75,7 @@ class TicTacToe {
     document.querySelector(".jogoHeader__counterPlays").innerText =
       this.getCounterPlays();
     let color;
-    if (this.getToggleSign() === "X") {
+    if (this.getToggleSign() === "X" && this.getCounterPlays() % 2 == 0) {
       this.setToggleSign("O");
       color = "#f76d11";
     } else {
@@ -98,7 +100,7 @@ class TicTacToe {
 
     this.buildMatrix();
 
-    if (this.getCounterPlays() >= 5) {
+    if (this.getCounterPlays() % 5 == 0) {
       this.checkForWinner();
     }
 
@@ -162,6 +164,15 @@ class TicTacToe {
     ) {
       this.setIsOver(true);
       this.disableAllCells();
+
+      if (this.getToggleSign() == "X") {
+        this.xWins = this.xWins + 1;
+      } else {
+        this.oWins = this.oWins + 1;
+      }
+      document.querySelector(
+        ".jogoHeader__scoreboard"
+      ).innerText = `X ${this.xWins} vs ${this.oWins} O`;
     }
     if (winByLines) {
       this.printLineWon();
@@ -197,9 +208,10 @@ class TicTacToe {
     document.querySelectorAll(".table__cell").forEach((cell) => {
       this.gameTable.removeChild(cell);
     });
-    this.setCounterPlays(0);
+    // this.setCounterPlays(0);
     document.querySelector(".jogoHeader__counterPlays").innerHTML =
       this.getCounterPlays();
+
     this.printTable();
   }
 
